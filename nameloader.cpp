@@ -23,7 +23,7 @@ bool Nameloader::LoadNames(int arrNum)
 
 	ss >> names[arrNum];
 
-//	std::cout << arrNum << "\n";
+	//std::cout << names[arrNum] << " ";
 
 	return true;
 }
