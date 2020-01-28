@@ -7,6 +7,7 @@ int main()
 	Nameloader obj;
 
 	int arrNum=0;
+	int arrNum2=0;
 
 	PasswordMaker passes;
 
@@ -27,9 +28,21 @@ int main()
 
 	}
 
-	ofs.close();
 
-//	std::cout << passes.PasswordGenerator();
+	for(int j=1;j<90000;j++)
+	{
+		obj.NamePassLoader(arrNum2);
+		std::cout << obj.GetNamePasses(arrNum2);
+		std::cout << "\n";
+		arrNum2++;
+		if(j==10){break;}
+		if(obj.NamePassLoader(arrNum2)==false)
+		{
+				break;
+		}
+	}
+
+	ofs.close();
 
 	return 0;
 }
