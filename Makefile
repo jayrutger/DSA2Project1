@@ -4,7 +4,7 @@ CXXFLAGS = -g -std=c++11 -Wall -ftest-coverage -fprofile-arcs
 SRCS = $(wildcard *.hpp)
 OBJECTS = $(SRCS:.hpp=.o)
 
-main: $(OBJECTS) main.o nameloader.o
+main: $(OBJECTS) main.o nameloader.o passwordmaker.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean:

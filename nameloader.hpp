@@ -1,6 +1,7 @@
 #ifndef NAMELOADER_H
 #define NAMELOADER_H
 
+#include "passwordmaker.hpp"
 #include <string>
 #include <iostream>
 #include <sstream>

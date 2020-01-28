@@ -3,7 +3,6 @@
 Nameloader::Nameloader()
 {
 	inFile.open("lastNames.txt");
-
 }
 
 bool Nameloader::LoadNames(int arrNum)
@@ -24,12 +23,7 @@ bool Nameloader::LoadNames(int arrNum)
 
 	ss >> names[arrNum];
 
-	std::cout << arrNum << "\n";
-
-	arrNum++;
-
-	LoadNames(arrNum);
-
+//	std::cout << arrNum << "\n";
 
 	return true;
 }
@@ -37,5 +31,4 @@ bool Nameloader::LoadNames(int arrNum)
 std::string Nameloader::GetName(int arrNum)
 {
 	return names[arrNum];
-
 }
