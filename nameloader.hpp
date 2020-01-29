@@ -15,6 +15,7 @@ class Nameloader
 		std::string names[90000];
 		std::string namespasswords[90000];
 		std::ifstream inFile;
+		std::ifstream inFile2;
 
 	public:
 		Nameloader();

@@ -25,24 +25,23 @@ int main()
 		{
 				break;
 		}
-
+	
 	}
 
+	ofs.close();
 
 	for(int j=1;j<90000;j++)
 	{
 		obj.NamePassLoader(arrNum2);
-		std::cout << obj.GetNamePasses(arrNum2);
-		std::cout << "\n";
+		std::cout << obj.GetNamePasses(arrNum2) << "\n";
 		arrNum2++;
-		if(j==10){break;}
+		
 		if(obj.NamePassLoader(arrNum2)==false)
 		{
 				break;
 		}
 	}
 
-	ofs.close();
 
 	return 0;
 }

@@ -3,6 +3,7 @@
 Nameloader::Nameloader()
 {
 	inFile.open("lastNames.txt");
+	inFile2.open("raw.txt");
 }
 
 bool Nameloader::LoadNames(int arrNum)
@@ -40,21 +41,21 @@ std::string Nameloader::GetNamePasses(int arrNum)
 bool Nameloader::NamePassLoader(int arrNum)
 {
 
-	if(isFile2Open==false)
+	/*if(isFile2Open==false)
 	{
 		inFile.open("raw.txt");
 		isFile2Open=true;
 	}
-
-	if(inFile.peek()==EOF)
+*/
+	if(inFile2.peek()==EOF)
 	{
-		inFile.close();
+		inFile2.close();
 		return false;
 	}
 
 	std::string line1;
 
-	std::getline(inFile,line1);
+	std::getline(inFile2,line1);
 
 	namespasswords[arrNum] = line1;
 
