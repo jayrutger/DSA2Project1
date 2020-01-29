@@ -40,13 +40,6 @@ std::string Nameloader::GetNamePasses(int arrNum)
 
 bool Nameloader::NamePassLoader(int arrNum)
 {
-
-	/*if(isFile2Open==false)
-	{
-		inFile.open("raw.txt");
-		isFile2Open=true;
-	}
-*/
 	if(inFile2.peek()==EOF)
 	{
 		inFile2.close();

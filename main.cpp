@@ -11,35 +11,55 @@ int main()
 
 	PasswordMaker passes;
 
-	std::ofstream ofs("raw.txt",std::ofstream::out);
+//	std::ofstream ofs("raw.txt",std::ofstream::out);
 	
-	for(int i=1;i<90000;i++)
+	for(int i=0;i<90000;i++)
 	{	
 
-		obj.LoadNames(arrNum);
-	
-		ofs << obj.GetName(arrNum) << " ";
-		ofs  << passes.PasswordGenerator() << "\n";
-		arrNum++;
-		if(obj.LoadNames(arrNum)==false)
+		if(obj.LoadNames(i))
 		{
-				break;
+
+//			ofs << obj.GetName(i) << " ";
+//			ofs  << passes.PasswordGenerator() << "\n";
+
 		}
-	
+	       	else
+		{	
+			break;
+		}
 	}
 
-	ofs.close();
+//	ofs.close();
 
-	for(int j=1;j<90000;j++)
+	for(int j=0;j<90000;j++)
 	{
-		obj.NamePassLoader(arrNum2);
-		std::cout << obj.GetNamePasses(arrNum2) << "\n";
-		arrNum2++;
-		
-		if(obj.NamePassLoader(arrNum2)==false)
+
+		if(obj.NamePassLoader(j))//loads names and pass string into array
 		{
-				break;
+		//	std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
 		}
+		else
+		{
+			break;
+		}
+	}
+	
+	for(int z=0;z<10;z++)
+	{
+
+		std::stringstream ss;
+
+		ss << obj.GetNamePasses(z);
+		std::string word1;	
+		std::string word2;
+		ss >> word1 >> word2;
+
+		std::cout << passes.Cipherer(word2) << "\n";
+		
+		if(word2==""){
+			break;
+		}
+
 	}
 
 
