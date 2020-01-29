@@ -13,8 +13,6 @@ TEST_CASE ("Book creation and checkout/in")
 
 	Nameloader obj;
 
-	int arrNum=0;
-	int arrNum2=0;
 
 	std::string answer;
 	
@@ -53,7 +51,11 @@ TEST_CASE ("Book creation and checkout/in")
 		}
 	}
 	
-	for(int z=0;z<1;z++)
+	//std::stringstream ss;
+	
+	std::stringstream ss2;
+	
+	for(int z=0;z<5;z++)
 	{
 
 		std::stringstream ss;
@@ -63,7 +65,8 @@ TEST_CASE ("Book creation and checkout/in")
 		std::string word2;
 		ss >> word1 >> word2;
 
-	       answer= passes.Cipherer(word2); //<< "\n";
+		//ss2 << word2;
+	       	ss2 << passes.Cipherer(word2) << "\n";
 		
 		if(word2==""){
 			break;
@@ -71,6 +74,5 @@ TEST_CASE ("Book creation and checkout/in")
 
 	}
 
-	REQUIRE(answer == "yofwoxfqw");
-
+	REQUIRE(ss2.str() == "wkyvtkadf\nqqqejicjo\ntmumvmefg\nmlenexksv\nggwcturoi\n");
 }

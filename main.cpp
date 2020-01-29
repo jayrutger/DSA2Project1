@@ -10,7 +10,7 @@ int main()
 
 	PasswordMaker passes;
 
-//	std::ofstream ofs("raw.txt",std::ofstream::out);
+	std::ofstream ofs("raw.txt",std::ofstream::out);
 	
 	for(int i=0;i<90000;i++)
 	{	
@@ -18,8 +18,8 @@ int main()
 		if(obj.LoadNames(i))
 		{
 
-//			ofs << obj.GetName(i) << " ";
-//			ofs  << passes.PasswordGenerator() << "\n";
+			ofs << obj.GetName(i) << " ";
+			ofs  << passes.PasswordGenerator() << "\n";
 
 		}
 	       	else
@@ -28,14 +28,16 @@ int main()
 		}
 	}
 
-//	ofs.close();
+	ofs.close();
 
 	for(int j=0;j<90000;j++)
 	{
 
 		if(obj.NamePassLoader(j))//loads names and pass string into array
 		{
-		//	std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
+			if(j<10){
+			std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
+			}
 		}
 		else
 		{

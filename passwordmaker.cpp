@@ -37,7 +37,7 @@ std::string PasswordMaker::Cipherer(std::string password)
     		if(numLetter==0)//j
 		{	
 			letter=int(c)+9;
-			if(int(letter)>122){
+			if(letter>122 || letter < 0){
 			letter = letter-122;
 			letter = letter +96;
 			}
@@ -46,7 +46,7 @@ std::string PasswordMaker::Cipherer(std::string password)
 		else if (numLetter==1)//o
 		{	
 			letter=int(c)+14;
-			if(int(letter)>122){
+			if(letter>122 || letter < 0){
 			letter = letter-122;
 			letter = letter+96;
 			}
@@ -56,7 +56,7 @@ std::string PasswordMaker::Cipherer(std::string password)
 		else if (numLetter==2)//n
 		{	
 			letter=int(c)+13;
-			if(int(letter)>122){
+			if(letter>122 || letter < 0){
 			letter = letter-122;
 			letter = letter+96;
 			}
@@ -66,7 +66,7 @@ std::string PasswordMaker::Cipherer(std::string password)
 		else if (numLetter==3)//e
 		{	
 			letter=int(c)+4;
-			if(int(letter)>122){
+			if(letter>122 || letter < 0){
 			letter = letter-122;
 			letter = letter+96;
 			}
@@ -76,7 +76,7 @@ std::string PasswordMaker::Cipherer(std::string password)
 		else if (numLetter==4)//s
 		{	
 			letter=int(c)+18;
-			if(int(letter)>122){
+			if(letter>122 || letter < 0){
 			letter = letter-122;
 			letter = letter+96;
 			}
