@@ -1,5 +1,4 @@
 #include "nameloader.hpp"
-#include <fstream>
 
 int main()
 {
@@ -44,7 +43,7 @@ int main()
 		}
 	}
 	
-	for(int z=0;z<10;z++)
+	for(int z=0;z<15;z++)
 	{
 
 		std::stringstream ss;

@@ -2,9 +2,6 @@
 #define NAMELOADER_H
 
 #include "passwordmaker.hpp"
-#include <string>
-#include <iostream>
-#include <sstream>
 #include <fstream>
 
 class Nameloader
