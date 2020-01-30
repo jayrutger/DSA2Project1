@@ -36,7 +36,7 @@ int main()
 		if(obj.NamePassLoader(j))//loads names and pass string into array
 		{
 			if(j<10){
-			std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
+//			std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
 			}
 		}
 		else
@@ -45,7 +45,9 @@ int main()
 		}
 	}
 	
-	for(int z=0;z<15;z++)
+	std::ofstream ofs2("encrypted.txt",std::ofstream::out);
+	
+	for(int z=0;z<90000;z++)
 	{
 
 		std::stringstream ss;
@@ -55,7 +57,7 @@ int main()
 		std::string word2;
 		ss >> word1 >> word2;
 
-		std::cout << passes.Cipherer(word2) << "\n";
+		ofs2 << passes.Cipherer(word2) << "\n";//print to file instead of cout
 		
 		if(word2==""){
 			break;
@@ -63,6 +65,7 @@ int main()
 
 	}
 
+	ofs2.close();
 
 	return 0;
 }
