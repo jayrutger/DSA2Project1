@@ -70,42 +70,47 @@ TEST_CASE ("Book creation and checkout/in")
 
 	Hashtable hash;
 
-	for(int i=0; i<2;i++)
+
+	for(int i=0; i<90000;i++)
 	{
 
 		std::stringstream ss;
 
 		ss << obj.GetNamePasses(i);
-		std::string userID;
-		std::string password;	
+		std::string userID;	
+		std::string password;//NOT ENCRYPTED YET
 		std::string encryptedPassword;
 		ss >> userID >> password;
 
+		if(userID==""){
+			break;
+		}
+
 		encryptedPassword = passes.Cipherer(password);
 
-	//	int index = hash.MakeIndex(userID);
+		int index = hash.MakeIndex(userID);
 
-		hash.Insert(0, userID, encryptedPassword);			
-
-	}//INSERTS 3 NAMES INTO INDEX 0
-
-	std::string userIDTest = "SMITH";
-	std::string encryptedPasswordTest = "wkyvtkadf";
-
-	std::string searchResult = hash.Search(0,userIDTest,encryptedPasswordTest);
-
-	REQUIRE(searchResult == "pass match after next node");
+		hash.Insert(index, userID, encryptedPassword);
+	
+	}
 
 
-	std::string userIDTest2 = "JOHNSON";
-	std::string encryptedPasswordTest2 = "qqqejicjo";
+	bool searchResult = hash.Search("SMITH","wkyvtkadf");
 
-	std::string searchResult2 = hash.Search(0,userIDTest2,encryptedPasswordTest2);
-
-	REQUIRE(searchResult2 == "password matches at head");
+	REQUIRE(searchResult == true);
 
 
 
+	bool searchResult2 = hash.Search("JOHNSON","qqqejicjo");
+
+	REQUIRE(searchResult2 == true);
 
 
+	bool searchResult3 = hash.Search("JOHNSON","zzzzzzzzz");
+
+	REQUIRE(searchResult3 == false);
+
+	bool searchResult4 = hash.Search("NOTANME","abcdefghi");
+
+	REQUIRE(searchResult4 == false);
 }

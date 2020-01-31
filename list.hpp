@@ -6,7 +6,7 @@
 class List
 {
 	private:
-		Node* head;
+		Node* head=nullptr;
 
 	public:
 		List();

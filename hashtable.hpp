@@ -13,9 +13,11 @@ class Hashtable
 
 	public:
 		Hashtable();
+
+		std::string GetNameAtIndex(int index);
 		int MakeIndex(std::string name);
 		void Insert(int hashedNumIndex, std::string userID, std::string encryptedPass );
-		std::string Search(int index, std::string userID,std::string encryptedPassword);
+		bool Search(std::string userID,std::string encryptedPassword);
 		std::string IsNameInHashtable(std::string userID);
 
 

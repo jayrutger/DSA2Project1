@@ -1,5 +1,5 @@
 #include "hashtable.hpp"
-
+#include <sstream>
 Hashtable::Hashtable()
 {
 	for(int i=0;i<90000;i++)
@@ -10,7 +10,7 @@ Hashtable::Hashtable()
 
 int Hashtable::MakeIndex(std::string name)
 {
-	int total;
+	int total=0;
 	int numCount=0;
 	for(char &c : name)
 	{
@@ -27,22 +27,22 @@ int Hashtable::MakeIndex(std::string name)
 
 		else if(numCount == 1)
 		{
-			total = total + int(c)*numCount*7;
+			total = total + int(c)*numCount*11;
 		}
 
 		else if(numCount == 2)
 		{
-			total = total +int(c)*numCount*7;
+			total = total +int(c)*numCount*13;
 		}
 
 		else if(numCount == 3)
 		{
-			total = total + int(c)*numCount*7;
+			total = total + int(c)*numCount*17;
 		}
 
 		else if(numCount == 4)
 		{
-			total = total + int(c)*numCount*7;
+			total = total + int(c)*numCount*27;
 		}
 
 		numCount++;
@@ -78,25 +78,39 @@ std::string Hashtable::IsNameInHashtable(std::string userID)
 
 }
 
-std::string Hashtable::Search(int index, std::string userID,std::string encryptedPassword)
-{	
+std::string Hashtable::GetNameAtIndex(int index)
+{
+	std::stringstream ss;
 
-//	int index = MakeIndex(userID);
+	ss << table[index]->GetHead()->GetName() + "\n";
+	Node* temp = table[index]->GetHead()->GetNext();
+
+	while(temp!=nullptr)
+	{
+		ss << temp->GetName() + "\n";
+		temp = temp->GetNext();
+	}
+	return ss.str();
+}
+
+bool Hashtable::Search(std::string userID,std::string encryptedPassword)
+{	
+	int index = MakeIndex(userID);
 
 	if(table[index]->GetHead() == nullptr)//Nothing there, no match
 	{
-		return "nullptr";
+		return false;
 	}
 
 	else if(table[index]->GetHead()->GetName() == userID)//Name match, check password
 	{
 		if(table[index]->GetHead()->GetPassword() == encryptedPassword)//Password Matches
 		{
-			return "password matches at head";
+			return true;
 		}
 		else
 		{
-			return "name match no pass match"; //Password didnt match
+			return false; //Password didnt match
 		}
 		
 	}
@@ -111,11 +125,11 @@ std::string Hashtable::Search(int index, std::string userID,std::string encrypte
 			{
 				if(temp->GetPassword() == encryptedPassword)
 				{
-					return "pass match after next node";
+					return true;
 				}
 				else
 				{
-					return "next node wrong pass"; //Password didnt match
+					return false; //Password didnt match
 				}
 			}
 			else
@@ -127,5 +141,5 @@ std::string Hashtable::Search(int index, std::string userID,std::string encrypte
 	}
 
 
-	return "last result, false";
+	return false;
 }

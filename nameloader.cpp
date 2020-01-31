@@ -38,6 +38,7 @@ std::string Nameloader::GetNamePasses(int arrNum)
 	return namespasswords[arrNum];
 }
 
+
 bool Nameloader::NamePassLoader(int arrNum)
 {
 	if(inFile2.peek()==EOF)

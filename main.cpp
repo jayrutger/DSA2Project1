@@ -70,6 +70,7 @@ int main()
 	Hashtable hash;
 
 	for(int i=0; i<90000;i++)
+
 	{
 
 		std::stringstream ss;
@@ -80,33 +81,27 @@ int main()
 		std::string encryptedPassword;
 		ss >> userID >> password;
 
+		if(userID==""){
+			break;
+		}
+
 		encryptedPassword = passes.Cipherer(password);
 
 		int index = hash.MakeIndex(userID);
 
-		//hash.Insert(index, userID, encryptedPassword);
-			
-
-		if(index > 89999)
-		{
-			std::cout << "YOURE FUCKED\n";
-		}
-		//std::cout << hash.IsNameInHashtable(userID);
+		hash.Insert(index, userID, encryptedPassword);
+	
 	}
+
+
+	int indexx = hash.MakeIndex("SMITH");
 
 	std::string userIDTest = "SMITH";
 	std::string encryptedPasswordTest = "wkyvtkadf";
 
-//	bool searchResult = hash.Search(userIDTest,encryptedPasswordTest);
+	bool searchResult = hash.Search(userIDTest,encryptedPasswordTest);
 
-/*	if(searchResult)
-	{
-		std::cout << "WORKS";
-	}
-	else
-	{
-		std::cout << "oops";
-	}
-*/
+	std::cout << searchResult;
+
 	return 0;
 }
