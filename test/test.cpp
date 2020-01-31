@@ -3,10 +3,10 @@
 #include "catch/catch.hpp"
 #include "../nameloader.hpp"
 #include "../passwordmaker.hpp"
+#include "../hashtable.hpp"
+
 #include <string>
 
-const std::string PUBLISHER = "Some Lucky Duck";
-const int NUMBER_AVAILABLE  = 0;
 
 TEST_CASE ("Book creation and checkout/in")
 {
@@ -17,18 +17,13 @@ TEST_CASE ("Book creation and checkout/in")
 	std::string answer;
 	
 	PasswordMaker passes;
-
-//	std::ofstream ofs("raw.txt",std::ofstream::out);
 	
 	for(int i=0;i<90000;i++)
 	{	
 
 		if(obj.LoadNames(i))
 		{
-
-//			ofs << obj.GetName(i) << " ";
-//			ofs  << passes.PasswordGenerator() << "\n";
-
+			//just loads names until none left
 		}
 	       	else
 		{	
@@ -36,14 +31,12 @@ TEST_CASE ("Book creation and checkout/in")
 		}
 	}
 
-//	ofs.close();
 
 	for(int j=0;j<90000;j++)
 	{
 
-		if(obj.NamePassLoader(j))//loads names and pass string into array
+		if(obj.NamePassLoader(j))//loads names and passes full line string into array
 		{
-		//	std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
 		}
 		else
 		{
@@ -51,7 +44,6 @@ TEST_CASE ("Book creation and checkout/in")
 		}
 	}
 	
-	//std::stringstream ss;
 	
 	std::stringstream ss2;
 	
@@ -65,7 +57,6 @@ TEST_CASE ("Book creation and checkout/in")
 		std::string word2;
 		ss >> word1 >> word2;
 
-		//ss2 << word2;
 	       	ss2 << passes.Cipherer(word2) << "\n";
 		
 		if(word2==""){
@@ -74,5 +65,47 @@ TEST_CASE ("Book creation and checkout/in")
 
 	}
 
-	REQUIRE(ss2.str() == "wkyvtkadf\nqqqejicjo\ntmumvmefg\nmlenexksv\nggwcturoi\n");
+	REQUIRE(ss2.str() == "wkyvtkadf\nqqqejicjo\ntmumvmefg\nmlenexksv\nggwcturoi\n");//Tests cipher on first 5 passwords
+
+
+	Hashtable hash;
+
+	for(int i=0; i<2;i++)
+	{
+
+		std::stringstream ss;
+
+		ss << obj.GetNamePasses(i);
+		std::string userID;
+		std::string password;	
+		std::string encryptedPassword;
+		ss >> userID >> password;
+
+		encryptedPassword = passes.Cipherer(password);
+
+	//	int index = hash.MakeIndex(userID);
+
+		hash.Insert(0, userID, encryptedPassword);			
+
+	}//INSERTS 3 NAMES INTO INDEX 0
+
+	std::string userIDTest = "SMITH";
+	std::string encryptedPasswordTest = "wkyvtkadf";
+
+	std::string searchResult = hash.Search(0,userIDTest,encryptedPasswordTest);
+
+	REQUIRE(searchResult == "pass match after next node");
+
+
+	std::string userIDTest2 = "JOHNSON";
+	std::string encryptedPasswordTest2 = "qqqejicjo";
+
+	std::string searchResult2 = hash.Search(0,userIDTest2,encryptedPasswordTest2);
+
+	REQUIRE(searchResult2 == "password matches at head");
+
+
+
+
+
 }

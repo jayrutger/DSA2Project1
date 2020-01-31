@@ -43,7 +43,6 @@ bool Nameloader::NamePassLoader(int arrNum)
 	if(inFile2.peek()==EOF)
 	{
 		inFile2.close();
-		return false;
 	}
 
 	std::string line1;

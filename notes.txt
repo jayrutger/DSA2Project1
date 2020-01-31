@@ -1,0 +1,9 @@
+hashing function should not have any other variables besides the userid, treat name like ascii to do maths with
+
+DO BANNER COMMENTS!!
+.
+
+CHANGE ALL FOR LOOP LIMITS TO CONST INTS NOT JUST NUMBERS
+
+
+

@@ -1,5 +1,5 @@
 #include "nameloader.hpp"
-
+#include "hashtable.hpp"
 int main()
 {
 
@@ -67,5 +67,46 @@ int main()
 
 	ofs2.close();
 
+	Hashtable hash;
+
+	for(int i=0; i<90000;i++)
+	{
+
+		std::stringstream ss;
+
+		ss << obj.GetNamePasses(i);
+		std::string userID;	
+		std::string password;//NOT ENCRYPTED YET
+		std::string encryptedPassword;
+		ss >> userID >> password;
+
+		encryptedPassword = passes.Cipherer(password);
+
+		int index = hash.MakeIndex(userID);
+
+		//hash.Insert(index, userID, encryptedPassword);
+			
+
+		if(index > 89999)
+		{
+			std::cout << "YOURE FUCKED\n";
+		}
+		//std::cout << hash.IsNameInHashtable(userID);
+	}
+
+	std::string userIDTest = "SMITH";
+	std::string encryptedPasswordTest = "wkyvtkadf";
+
+//	bool searchResult = hash.Search(userIDTest,encryptedPasswordTest);
+
+/*	if(searchResult)
+	{
+		std::cout << "WORKS";
+	}
+	else
+	{
+		std::cout << "oops";
+	}
+*/
 	return 0;
 }
