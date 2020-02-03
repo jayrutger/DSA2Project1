@@ -6,12 +6,12 @@
 
 std::string PasswordMaker::PasswordGenerator()
 {
-	
+	const int PASSWORD_LENGTH = 9;	
 	char lowercaseletters[26]= {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
 	std::string password;
 
-	for(int i=0;i<9;i++){
+	for(int i=0;i<PASSWORD_LENGTH;i++){
 	
 		password = password + lowercaseletters[rand() % 26];
 	}
@@ -28,8 +28,6 @@ std::string PasswordMaker::Cipherer(std::string password)
 	
 	char letter;
 	std::string word;
-	//std::stringstream ss;
-
 
 	for(char& c : password)
 	{
@@ -82,8 +80,6 @@ std::string PasswordMaker::Cipherer(std::string password)
 			}
 
 		}
-
-	//	ss << letter;
 
 		word = word + letter;
 

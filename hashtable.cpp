@@ -2,7 +2,7 @@
 #include <sstream>
 Hashtable::Hashtable()
 {
-	for(int i=0;i<90000;i++)
+	for(int i=0;i<MAX_ARRAY_SIZE;i++)
 	{
 		table[i] = new List();
 	}
@@ -11,7 +11,7 @@ Hashtable::Hashtable()
 int Hashtable::MakeIndex(std::string name)
 {
 	int total=0;
-	int numCount=0;
+	int numCount=0;//Adds variety to index number for each name
 	for(char &c : name)
 	{
 
@@ -49,7 +49,7 @@ int Hashtable::MakeIndex(std::string name)
 
 	}
 
-	total = total%90000;//ensures never OOB 
+	total = total%MAX_ARRAY_SIZE;//ensures never OOB of array
 
 	return total;
 }
@@ -125,7 +125,7 @@ bool Hashtable::Search(std::string userID,std::string encryptedPassword)
 			{
 				if(temp->GetPassword() == encryptedPassword)
 				{
-					return true;
+					return true;//Pass match next nodes
 				}
 				else
 				{
