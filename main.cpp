@@ -1,18 +1,24 @@
 #include "nameloader.hpp"
 #include "hashtable.hpp"
+
 int main()
 {
 
 	Nameloader obj;
 
-	int arrNum=0;
-	int arrNum2=0;
-
 	PasswordMaker passes;
+
+	const int MAX_FILE_SIZE = 90000;
+	const int TEST_NAME_LIMIT = 5;
+	std::string testNames[5] = {"SMITH","JOHNSON","WILLIAMS","JONES","BROWN"};
+	std::string illegalPasswords[5] = {"jdksltoyu","pdjtulatu","qpwidhtyu","nvmzowpryi","paowithcb"};	
+	std::string legalPasswords[5] = {"nwlrbbmqb", "hcdarzowk","kyhiddqsc", "dxrjmowfr","xsjybldbe"};
+
+	//LOADS NAMES FROM FILE AND PRINTS OUT TO "raw.txt" WITH RANDOM PASSWORD
 
 	std::ofstream ofs("raw.txt",std::ofstream::out);
 	
-	for(int i=0;i<90000;i++)
+	for(int i=0;i<MAX_FILE_SIZE;i++)
 	{	
 
 		if(obj.LoadNames(i))
@@ -30,14 +36,15 @@ int main()
 
 	ofs.close();
 
-	for(int j=0;j<90000;j++)
+
+//STORES "raw.txt" NAMES AND PASSWORDS IN ARRAY FOR LATER USE//
+
+
+	for(int j=0;j<MAX_FILE_SIZE;j++)
 	{
 
-		if(obj.NamePassLoader(j))//loads names and pass string into array
+		if(obj.NamePassLoader(j))//loads names and password string into array
 		{
-			if(j<10){
-//			std::cout << obj.GetNamePasses(j) << "\n"; //prints out 4 fun
-			}
 		}
 		else
 		{
@@ -45,9 +52,13 @@ int main()
 		}
 	}
 	
+
+//READS NAME & PASSWORDS FROM STORAGE ARRAY, CIPHERS PASSWORD AND PRINTS TO "encrypted.txt"//
+
+
 	std::ofstream ofs2("encrypted.txt",std::ofstream::out);
 	
-	for(int z=0;z<90000;z++)
+	for(int z=0;z<MAX_FILE_SIZE;z++)
 	{
 
 		std::stringstream ss;
@@ -67,10 +78,14 @@ int main()
 
 	ofs2.close();
 
+
+//GETS ENCRYPTED PASSWORDS AND STORES WITH UNENCRYPTED USERID IN HASH TABLE
+//MAKES HASH TABLE INDEX VALUE FROM USERID WITH hash.MakeIndex(userID)
+
+
 	Hashtable hash;
 
-	for(int i=0; i<90000;i++)
-
+	for(int i=0; i<MAX_FILE_SIZE;i++)
 	{
 
 		std::stringstream ss;
@@ -87,21 +102,65 @@ int main()
 
 		encryptedPassword = passes.Cipherer(password);
 
-		int index = hash.MakeIndex(userID);
-
-		hash.Insert(index, userID, encryptedPassword);
-	
+		hash.Insert(hash.MakeIndex(userID), userID, encryptedPassword);
 	}
 
 
-	int indexx = hash.MakeIndex("SMITH");
+	std::cout << "Legal:\n";
+	std::cout << "UserID   Password        Result\n";
+	
+	for(int i=0; i<TEST_NAME_LIMIT;i++)
+	{
+		std::string encryptedPasswordTest;
 
-	std::string userIDTest = "SMITH";
-	std::string encryptedPasswordTest = "wkyvtkadf";
+		encryptedPasswordTest = passes.Cipherer(legalPasswords[i]);
 
-	bool searchResult = hash.Search(userIDTest,encryptedPasswordTest);
+		bool searchResult = hash.Search(testNames[i],encryptedPasswordTest);
 
-	std::cout << searchResult;
+		if(testNames[i].size() > 7)
+		{
+			std::cout << testNames[i] << " " << legalPasswords[i] << "\t";
+		}
+		else
+		{
+			std::cout <<  testNames[i] << "\t " << legalPasswords[i] << "\t";
+		}
+		if(searchResult){ 
+			std::cout << " Match\n";
+		}
+		else
+		{
+			std::cout << " No match\n";
+		}
+	}
+
+	std::cout << "\nIllegal:\n";
+	std::cout << "UserID   Password        Result\n";
+	
+	for(int i=0; i<TEST_NAME_LIMIT;i++)
+	{
+		std::string encryptedPasswordTest;
+
+		encryptedPasswordTest = passes.Cipherer(illegalPasswords[i]);
+
+		bool searchResult = hash.Search(testNames[i],encryptedPasswordTest);
+
+		if(testNames[i].size() > 7)
+		{
+			std::cout << testNames[i] << " " << illegalPasswords[i] << "\t";
+		}
+		else
+		{
+			std::cout <<  testNames[i] << "\t " << illegalPasswords[i] << "\t";
+		}
+		if(searchResult){ 
+			std::cout << " Match\n";
+		}
+		else
+		{
+			std::cout << " No match\n";
+		}
+	}
 
 	return 0;
 }
