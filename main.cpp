@@ -1,6 +1,26 @@
 #include "nameloader.hpp"
 #include "hashtable.hpp"
 
+/*******************************************************************
+ Student Name:JAMES RUTGER
+ File Name: Main.cpp
+ Assignment: Project 1 - Hash Table
+
+ Data Structures and Algorithms 2
+ Dr.John Coffey
+
+ Class Description:
+
+ Main reads in from "lastNames.txt", stores userID's into an array.
+ Generates random passwords, and stores with userID's into "raw.txt".
+ Then reads from "raw.txt", and stores userID's and password into an array.
+ Reads the password from that array and encrypts with the JONES cypher.
+ Writes out that password to "encrypted.txt".
+ Stores userID and encrypted password into hash table.
+ Finally tests searching for 5 legal and 5 illegal name and password 
+ combinations of which results it outputs to the screen.
+*****************************************************************/
+
 int main()
 {
 

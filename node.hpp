@@ -4,15 +4,18 @@
 #include <iostream>
 #include <string>
 
-// JAMES RUTGER
-// Data Structures and Algorithms 2
-// Dr.John Coffey
-// 
-// Class Description:
-//
-// Node is a basic class used to handle userID's and
-// passwords for use in the linked lists
-//
+/*******************************************************************
+ Student Name:JAMES RUTGER
+ File Name: Node.hpp
+ Assignment: Project 1 - Hash Table
+
+ Data Structures and Algorithms 2
+ Dr.John Coffey
+
+ Class Description:
+ Node is a basic class used to handle userID's and
+ passwords for use in the linked lists.
+*******************************************************************/
 
 class Node
 {

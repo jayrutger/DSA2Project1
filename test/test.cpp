@@ -8,6 +8,19 @@
 #include <string>
 
 
+/*******************************************************************
+ Student Name:JAMES RUTGER
+ File Name: Test.cpp
+ Assignment: Project 1 - Hash Table
+
+ Data Structures and Algorithms 2
+ Dr.John Coffey
+
+ Class Description:
+ Made a few tests to search for inserting and searching names into 
+ the hash table.
+*****************************************************************/
+
 TEST_CASE ("Book creation and checkout/in")
 {
 

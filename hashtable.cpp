@@ -1,5 +1,24 @@
 #include "hashtable.hpp"
 #include <sstream>
+
+
+/*******************************************************************
+ Student Name:JAMES RUTGER
+ File Name: Hashtable.cpp
+ Assignment: Project 1 - Hash Table
+
+ Data Structures and Algorithms 2
+ Dr.John Coffey
+
+ Class Description:
+ Hashtable is a very simple class which only makes random 9 char
+ passwords for "raw.txt"and also ciphers them for "encrypted.txt".
+*******************************************************************/
+
+
+/*******************************************************************
+ * Constructor initializes hash table array of type List*.
+ ******************************************************************/
 Hashtable::Hashtable()
 {
 	for(int i=0;i<MAX_ARRAY_SIZE;i++)
@@ -8,6 +27,10 @@ Hashtable::Hashtable()
 	}
 }
 
+/*******************************************************************
+ * MakeIndex creates and returns an index for the hash table based 
+ * on the input userID.
+ ******************************************************************/
 int Hashtable::MakeIndex(std::string name)
 {
 	int total=0;
@@ -54,6 +77,10 @@ int Hashtable::MakeIndex(std::string name)
 	return total;
 }
 
+/*******************************************************************
+ * Insert takes the calculated hash table index number from MakeIndex,
+ * userID, and encrypted password to store into the hash table.
+ ******************************************************************/
 void Hashtable::Insert(int hashedNumIndex, std::string userID, std::string encryptedPass)
 {
 
@@ -61,7 +88,11 @@ void Hashtable::Insert(int hashedNumIndex, std::string userID, std::string encry
 
 }
 
-
+/*******************************************************************
+ * Search looks through the hash table with the given userID and
+ * password to see if it matches any stored userID and password
+ * combination. Returns true/false depending on if they match.
+ ******************************************************************/
 bool Hashtable::Search(std::string userID,std::string encryptedPassword)
 {	
 	int index = MakeIndex(userID);

@@ -1,5 +1,25 @@
 #include "passwordmaker.hpp"
 
+
+/*******************************************************************
+ Student Name:JAMES RUTGER
+ File Name: PasswordMaker.cpp
+ Assignment: Project 1 - Hash Table
+
+ Data Structures and Algorithms 2
+ Dr.John Coffey
+
+ Class Description:
+
+ PasswordMaker is a very simple class which only makes random 9 char
+ passwords for "raw.txt"and also ciphers them for "encrypted.txt"
+*******************************************************************/
+
+
+/*******************************************************************
+ * PasswordGenerator generates and returns a random 9 character
+ * string of lowercase letters for the password.
+ ******************************************************************/
 std::string PasswordMaker::PasswordGenerator()
 {
 	const int PASSWORD_LENGTH = 9;	
@@ -17,6 +37,11 @@ std::string PasswordMaker::PasswordGenerator()
 }
 
 
+/*******************************************************************
+ * Cipherer takes in a string password generated from Password 
+ * Generator and applies the JONES vignere cipher to it, and returns
+ * the ciphered password.
+ ******************************************************************/
 std::string PasswordMaker::Cipherer(std::string password)
 {
 
