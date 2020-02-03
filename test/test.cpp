@@ -13,7 +13,6 @@ TEST_CASE ("Book creation and checkout/in")
 
 	Nameloader obj;
 
-
 	std::string answer;
 	
 	PasswordMaker passes;
@@ -67,9 +66,7 @@ TEST_CASE ("Book creation and checkout/in")
 
 	REQUIRE(ss2.str() == "wkyvtkadf\nqqqejicjo\ntmumvmefg\nmlenexksv\nggwcturoi\n");//Tests cipher on first 5 passwords
 
-
 	Hashtable hash;
-
 
 	for(int i=0; i<90000;i++)
 	{
@@ -78,7 +75,7 @@ TEST_CASE ("Book creation and checkout/in")
 
 		ss << obj.GetNamePasses(i);
 		std::string userID;	
-		std::string password;//NOT ENCRYPTED YET
+		std::string password;
 		std::string encryptedPassword;
 		ss >> userID >> password;
 
@@ -94,11 +91,9 @@ TEST_CASE ("Book creation and checkout/in")
 	
 	}
 
-
 	bool searchResult = hash.Search("SMITH","wkyvtkadf");
 
 	REQUIRE(searchResult == true);
-
 
 
 	bool searchResult2 = hash.Search("JOHNSON","qqqejicjo");
@@ -109,6 +104,7 @@ TEST_CASE ("Book creation and checkout/in")
 	bool searchResult3 = hash.Search("JOHNSON","zzzzzzzzz");
 
 	REQUIRE(searchResult3 == false);
+
 
 	bool searchResult4 = hash.Search("NOTANME","abcdefghi");
 

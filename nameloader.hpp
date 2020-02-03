@@ -5,15 +5,17 @@
 #include <fstream>
 
 // JAMES RUTGER
-// Data Structures and Algorithsm 2
+// Data Structures and Algorithms 2
 // Dr.John Coffey
-// 
+//
+// Class Description:
+//
 // Nameloader is work-horse class that reads, writes, and stores in
 // arrays the names and passwords from .txt files.
 //
 // Main functions:
-// LoadNames(); stores the names from "lastNames.txt" into an array.
 //
+// LoadNames(); stores the names from "lastNames.txt" into an array.
 // NamePassLoader(); stores names and random passwords from "raw.txt"
 // into an array.
 //

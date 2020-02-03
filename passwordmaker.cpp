@@ -1,9 +1,5 @@
 #include "passwordmaker.hpp"
 
-//PasswordMaker::PasswordMaker()
-//{
-//}
-
 std::string PasswordMaker::PasswordGenerator()
 {
 	const int PASSWORD_LENGTH = 9;	

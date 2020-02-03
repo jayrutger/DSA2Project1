@@ -10,11 +10,12 @@ int main()
 
 	const int MAX_FILE_SIZE = 90000;
 	const int TEST_NAME_LIMIT = 5;
+
 	std::string testNames[5] = {"SMITH","JOHNSON","WILLIAMS","JONES","BROWN"};
 	std::string illegalPasswords[5] = {"jdksltoyu","pdjtulatu","qpwidhtyu","nvmzowpryi","paowithcb"};	
 	std::string legalPasswords[5] = {"nwlrbbmqb", "hcdarzowk","kyhiddqsc", "dxrjmowfr","xsjybldbe"};
 
-	//LOADS NAMES FROM FILE AND PRINTS OUT TO "raw.txt" WITH RANDOM PASSWORD
+//LOADS NAMES FROM FILE AND PRINTS OUT TO "raw.txt" WITH RANDOM PASSWORD
 
 	std::ofstream ofs("raw.txt",std::ofstream::out);
 	
@@ -25,7 +26,7 @@ int main()
 		{
 
 			ofs << obj.GetName(i) << " ";
-			ofs  << passes.PasswordGenerator() << "\n";
+			ofs << passes.PasswordGenerator() << "\n";
 
 		}
 	       	else
@@ -39,11 +40,10 @@ int main()
 
 //STORES "raw.txt" NAMES AND PASSWORDS IN ARRAY FOR LATER USE//
 
-
 	for(int j=0;j<MAX_FILE_SIZE;j++)
 	{
 
-		if(obj.NamePassLoader(j))//loads names and password string into array
+		if(obj.NamePassLoader(j))//Runs function until it returns false (no more names)
 		{
 		}
 		else
@@ -54,7 +54,6 @@ int main()
 	
 
 //READS NAME & PASSWORDS FROM STORAGE ARRAY, CIPHERS PASSWORD AND PRINTS TO "encrypted.txt"//
-
 
 	std::ofstream ofs2("encrypted.txt",std::ofstream::out);
 	
@@ -68,7 +67,7 @@ int main()
 		std::string word2;
 		ss >> word1 >> word2;
 
-		ofs2 << passes.Cipherer(word2) << "\n";//print to file instead of cout
+		ofs2 << passes.Cipherer(word2) << "\n";
 		
 		if(word2==""){
 			break;
@@ -82,7 +81,6 @@ int main()
 //GETS ENCRYPTED PASSWORDS AND STORES WITH UNENCRYPTED USERID IN HASH TABLE
 //MAKES HASH TABLE INDEX VALUE FROM USERID WITH hash.MakeIndex(userID)
 
-
 	Hashtable hash;
 
 	for(int i=0; i<MAX_FILE_SIZE;i++)
@@ -92,7 +90,7 @@ int main()
 
 		ss << obj.GetNamePasses(i);
 		std::string userID;	
-		std::string password;//NOT ENCRYPTED YET
+		std::string password;
 		std::string encryptedPassword;
 		ss >> userID >> password;
 
@@ -105,6 +103,8 @@ int main()
 		hash.Insert(hash.MakeIndex(userID), userID, encryptedPassword);
 	}
 
+
+//PRINTS OUT LEGAL PASSWORD ATTEMPTS 
 
 	std::cout << "Legal:\n";
 	std::cout << "UserID   Password        Result\n";
@@ -133,6 +133,8 @@ int main()
 			std::cout << " No match\n";
 		}
 	}
+
+//PRINTS OUT ILLEGAL PASSWORD ATTEMPTS
 
 	std::cout << "\nIllegal:\n";
 	std::cout << "UserID   Password        Result\n";

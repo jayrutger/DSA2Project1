@@ -61,37 +61,6 @@ void Hashtable::Insert(int hashedNumIndex, std::string userID, std::string encry
 
 }
 
-std::string Hashtable::IsNameInHashtable(std::string userID)
-{
-	int index = MakeIndex(userID);
-
-	std::string name = "DEFAULT\n";
-
-	if(table[index]->GetHead() == nullptr)//Nothing there, no match
-	{
-		return "null\n";
-	}
-
-	name = table[index]->GetHead()->GetName() + "\n";
-	
-	return name;
-
-}
-
-std::string Hashtable::GetNameAtIndex(int index)
-{
-	std::stringstream ss;
-
-	ss << table[index]->GetHead()->GetName() + "\n";
-	Node* temp = table[index]->GetHead()->GetNext();
-
-	while(temp!=nullptr)
-	{
-		ss << temp->GetName() + "\n";
-		temp = temp->GetNext();
-	}
-	return ss.str();
-}
 
 bool Hashtable::Search(std::string userID,std::string encryptedPassword)
 {	
